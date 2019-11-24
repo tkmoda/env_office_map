@@ -8,8 +8,6 @@
         <meta name="apple-mobile-web-app-capable" content="yes">
         <link rel="stylesheet" href="css/leaflet.css">
         <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
-        <link rel="stylesheet" href="css/MarkerCluster.css">
-        <link rel="stylesheet" href="css/MarkerCluster.Default.css">
         <style>
         html, body, #map {
             width: 100%;
@@ -32,7 +30,6 @@
         <script src="js/rbush.min.js"></script>
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
-        <script src="js/leaflet.markercluster.js"></script>
         <script src="data/office_list3_sjis_addressmatch_1.js"></script>
         <script>
         var map = L.map('map', {
@@ -114,12 +111,8 @@
                 return L.marker(latlng, style_office_list3_sjis_addressmatch_1_0(feature));
             },
         });
-        var cluster_office_list3_sjis_addressmatch_1 = new L.MarkerClusterGroup({showCoverageOnHover: false,
-            spiderfyDistanceMultiplier: 2});
-        cluster_office_list3_sjis_addressmatch_1.addLayer(layer_office_list3_sjis_addressmatch_1);
-
         bounds_group.addLayer(layer_office_list3_sjis_addressmatch_1);
-        cluster_office_list3_sjis_addressmatch_1.addTo(map);
+        map.addLayer(layer_office_list3_sjis_addressmatch_1);
         setBounds();
         var i = 0;
         layer_office_list3_sjis_addressmatch_1.eachLayer(function(layer) {
