@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/MarkerCluster.css">
+        <link rel="stylesheet" href="css/MarkerCluster.Default.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet.markercluster.js"></script>
+        <script src="data/office_list3_sjis_addressmatch_1.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[23.149487513832167,114.46084694786182],[47.86581331626534,168.40148552487514]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a>');
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        var layer__0 = L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/pale/{z}/{x}/{y}.png', {
+            opacity: 0.7,
+            attribution: '',
+        });
+        layer__0;
+        map.addLayer(layer__0);
+        function pop_office_list3_sjis_addressmatch_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['name'] !== null ? Autolinker.link(String(feature.properties['name'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['address_code'] !== null ? Autolinker.link(String(feature.properties['address_code'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['address'] !== null ? Autolinker.link(String(feature.properties['address'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['tel_num'] !== null ? Autolinker.link(String(feature.properties['tel_num'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fax_num'] !== null ? Autolinker.link(String(feature.properties['fax_num'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['email_num'] !== null ? Autolinker.link(String(feature.properties['email_num'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LocName'] !== null ? Autolinker.link(String(feature.properties['LocName'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fX'] !== null ? Autolinker.link(String(feature.properties['fX'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fY'] !== null ? Autolinker.link(String(feature.properties['fY'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['iConf'] !== null ? Autolinker.link(String(feature.properties['iConf'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['iLvl'] !== null ? Autolinker.link(String(feature.properties['iLvl'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_office_list3_sjis_addressmatch_1_0() {
+            return {
+                pane: 'pane_office_list3_sjis_addressmatch_1',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/poi_embassy2.svg',
+            iconSize: [26.599999999999998, 26.599999999999998]
+        }),
+            }
+        }
+        map.createPane('pane_office_list3_sjis_addressmatch_1');
+        map.getPane('pane_office_list3_sjis_addressmatch_1').style.zIndex = 401;
+        map.getPane('pane_office_list3_sjis_addressmatch_1').style['mix-blend-mode'] = 'normal';
+        var layer_office_list3_sjis_addressmatch_1 = new L.geoJson(json_office_list3_sjis_addressmatch_1, {
+            attribution: '',
+            pane: 'pane_office_list3_sjis_addressmatch_1',
+            onEachFeature: pop_office_list3_sjis_addressmatch_1,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, style_office_list3_sjis_addressmatch_1_0(feature));
+            },
+        });
+        var cluster_office_list3_sjis_addressmatch_1 = new L.MarkerClusterGroup({showCoverageOnHover: false,
+            spiderfyDistanceMultiplier: 2});
+        cluster_office_list3_sjis_addressmatch_1.addLayer(layer_office_list3_sjis_addressmatch_1);
+
+        bounds_group.addLayer(layer_office_list3_sjis_addressmatch_1);
+        cluster_office_list3_sjis_addressmatch_1.addTo(map);
+        setBounds();
+        var i = 0;
+        layer_office_list3_sjis_addressmatch_1.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['name'] !== null?String('<div style="color: #000000; font-size: 10pt; font-weight: bold; font-family: \'YuGothic\', sans-serif;">' + layer.feature.properties['name']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_office_list3_sjis_addressmatch_1'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        resetLabels([layer_officelist3sjisaddressmatch_1]);
+        map.on("zoomend", function(){
+            resetLabels([layer_officelist3sjisaddressmatch_1]);
+        });
+        map.on("layeradd", function(){
+            resetLabels([layer_officelist3sjisaddressmatch_1]);
+        });
+        map.on("layerremove", function(){
+            resetLabels([layer_officelist3sjisaddressmatch_1]);
+        });
+        </script>
+    </body>
+</html>
